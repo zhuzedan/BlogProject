@@ -1,4 +1,4 @@
-package com.zzd.entity;
+package com.zzd.domain.entity;
 
 import java.util.Date;
 import java.io.Serializable;

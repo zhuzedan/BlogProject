@@ -1,4 +1,4 @@
-package com.zzd.entity;
+package com.zzd.domain;
 
 import com.zzd.enums.AppHttpCodeEnum;
 
