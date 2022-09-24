@@ -1,6 +1,8 @@
 package com.zzd.config;
 
 import com.zzd.filter.JwtAuthenticationTokenFilter;
+import com.zzd.handler.security.AccessDeniedHandlerImpl;
+import com.zzd.handler.security.AuthenticationEntryPointImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Autowired
     private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+    @Autowired
+    private AccessDeniedHandlerImpl accessDeniedHandler;
+    @Autowired
+    private AuthenticationEntryPointImpl authenticationEntryPoint;
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -44,7 +50,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 除上面外的所有请求全部不需要认证即可访问
                 .anyRequest().permitAll();
 
-
+        //配置异常处理器
+        http.exceptionHandling()
+                .authenticationEntryPoint(authenticationEntryPoint)
+                .accessDeniedHandler(accessDeniedHandler);
         http.logout().disable();
         //把jwtAuthenticationTokenFilter添加到SpringSecurity的过滤器链中
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
