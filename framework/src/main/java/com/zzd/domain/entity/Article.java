@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("sg_article")
+@TableName("zzd_article")
 @Accessors(chain = true)
 @SuppressWarnings("serial")
 public class Article {

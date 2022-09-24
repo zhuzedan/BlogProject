@@ -18,7 +18,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("sg_link")
+@TableName("zzd_link")
 public class Link {
     @TableId
     private Long id;
