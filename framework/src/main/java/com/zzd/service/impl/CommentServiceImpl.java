@@ -7,13 +7,17 @@ import com.zzd.domain.ResponseResult;
 import com.zzd.domain.entity.Comment;
 import com.zzd.domain.vo.CommentVo;
 import com.zzd.domain.vo.PageVo;
+import com.zzd.enums.AppHttpCodeEnum;
 import com.zzd.mapper.CommentMapper;
 import com.zzd.service.CommentService;
 import com.zzd.service.UserService;
 import com.zzd.utils.BeanCopyUtils;
+import com.zzd.utils.SecurityUtils;
+import org.omg.CORBA.SystemException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -55,6 +59,11 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
         return ResponseResult.okResult(new PageVo(commentVoList,page.getTotal()));
     }
 
+    @Override
+    public ResponseResult addComment(Comment comment) {
+        save(comment);
+        return ResponseResult.okResult();
+    }
     /**
      * 根据根评论的id查询所对应的子评论的集合
      * @param id 根评论的id
