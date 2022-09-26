@@ -1,6 +1,7 @@
 package com.zzd.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zzd.domain.ResponseResult;
 import com.zzd.domain.entity.User;
 
 
@@ -12,5 +13,6 @@ import com.zzd.domain.entity.User;
  */
 public interface UserService extends IService<User> {
 
+    ResponseResult userInfo();
 }
 
